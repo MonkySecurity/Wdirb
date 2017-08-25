@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Wdirb</title>
+	<meta charset="utf-8"/>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css')}}">
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png')}}" />
+	<!-- jQuery library -->
+	<script src="{{ url_for('static', filename='jquery/jquery.js')}}"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script> 
+	
+</head>
+<body>
+	
+	<div class="container">
+  {% for error in errors %}
+    <div class="alert alert-danger alert-dismissable fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Please</strong> {{error}}
+    </div>
+  {% endfor %}
+  <center><h2>Wdirb</h2>
+	<img src="{{ url_for('static', filename='images/logo.png')}}" width="100px"/></center>
+  <form action="/" method="post">
+    <div class="form-group">
+      <label for="url">URL:</label>
+      <input type="url" name="url" class="form-control" id="url" placeholder="http://example/">
+    </div>
+    <div class="form-group">
+      <label for="port">Delay/Request (ms)</label>
+      <input type="text" name="port" class="form-control" id="port" placeholder="4">
+    </div>
+     <div class="form-group">
+  <label for="lan">Wordlist:</label>
+  <select name="lan" class="form-control" id="lan">
+    <option value="bash">directory-list-small.txt</option>
+    <option value="netcat">directory-list-medium.txt</option>
+    <option value="perl">directory-list-big.txt</option>
+    <option value="php">directory-list-lowercase.txt</option>
+    <option value="python">directory-list-uppercase.txt</option>
+    <option value="ruby">directory-list-small-lowercase.txt</option>
+  </select>
+</div>
+    <div class="form-group">
+      <label for="exten">Extension </label>
+      <input type="text" name="exten" class="form-control" id="exten" placeholder="html">
+    </div> 
+	<button type="submit" class="btn btn-default">Start</button>
+  </form>
+  <center> <div class="loader"></div></center>
+  <div class="row">
+    <div class="col-md-12">
+      <h3><u>Result</u></h3>
+      <div class="well">
+          {{ server }}
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
